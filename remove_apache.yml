@@ -4,36 +4,12 @@
   become: true
   tasks:
   
-  - name: update repository index
-    apt: 
+
+  - name: remove apache2 package and add php support for apache.
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: absent
       update_cache: yes
-    when: ansible_distribution == "Ubuntu"    
 
-  - name: remove apache2 package
-    apt:
-      name: apache2
-      state: absent
-    when: ansible_distribution == "Ubuntu"    
-
-  - name: remove php support for apache
-    apt:
-      name: libapache2-mod-php
-      state: absent
-    when: ansible_distribution == "Ubuntu"    
-  
-  - name: update repository index
-    dnf: 
-      update_cache: yes
-    when: ansible_distribution == "Rocky"    
-
-  - name: remove apache2 package
-    dnf:
-      name: httpd 
-      state: absent
-    when: ansible_distribution == "Rocky"    
-
-  - name: remove php support for apache
-    dnf:
-      name: php
-      state: absent
-    when: ansible_distribution == "Rocky"    
