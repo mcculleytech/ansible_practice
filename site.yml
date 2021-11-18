@@ -60,6 +60,30 @@
       update_cache: yes
     when: ansible_distribution == "Rocky"
 
+  - name: start https (rocky)
+    tags: apache,rocky, httpd
+    service:
+      enabled: yes
+      name: httpd
+      state: started
+    when: ansible_distribution == "Rocky"
+  
+  - name: change email address for admin
+    tags: apache,rocky,httpd
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin somebody@somewhere.net
+    when: ansible_distribution == "Rocky"
+    register: httpd
+
+  - name: restart httpd (rocky)
+    tags: apache,rocky,httpd
+    service:
+      name: httpd
+      state: restarted
+    when: httpd.changed
+
   - name: copy default webpage file over to multiple servers.
     tags: apache,apache2,httpd
     copy: 
