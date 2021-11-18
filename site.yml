@@ -5,12 +5,14 @@
   tasks:
 
   - name: install updates (Rocky)
+    tags: always
     dnf:
       update_only: yes
       update_cache: yes
     when: ansible_distribution == "Rocky"
 
   - name: install updates (Ubuntu)
+    tags: always
     apt: 
       upgrade: dist 
       update_cache: yes
@@ -22,6 +24,7 @@
   tasks:
 
   - name: Install apache and php for Ubuntu Servers.
+    tags: apache,apache2,ubuntu
     apt:
       name: 
         - apache2
@@ -31,6 +34,7 @@
     when: ansible_distribution == "Ubuntu"
   
   - name: Install apache and php for Rocky Servers.
+    tags: apache,rocky,httpd 
     dnf: 
       name:
         - httpd
