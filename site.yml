@@ -4,19 +4,29 @@
   become: true
   tasks:
 
-  - name: install updates (Rocky)
+  - name: updates repo cache (Rocky)
     tags: always
     dnf:
-      update_only: yes
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Rocky"
 
-  - name: install updates (Ubuntu)
+  - name: updates repo cache (Ubuntu)
     tags: always
     apt: 
-      upgrade: dist 
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: add ssh key for neo
+    tags: always
+    authorized_key:
+      user: neo
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOJHRPh13gdbljDk1oMs8t7fDPi3fN8GpNr+Wll9HLxP ansible"
 
 - hosts: workstations
   become: true
