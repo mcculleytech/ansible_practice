@@ -1,0 +1,5 @@
+- name: add ssh key for neo
+  authorized_key:
+    user: neo
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOJHRPh13gdbljDk1oMs8t7fDPi3fN8GpNr+Wll9HLxP ansible"
+ 

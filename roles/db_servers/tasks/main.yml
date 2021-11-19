@@ -1,0 +1,14 @@
+- name: install mariadb on db_servers for rocky
+  tags: rocky,db,mariadb
+  dnf:
+    name: mariadb
+    state: latest
+  when: ansible_distribution == "Rocky"
+
+
+- name: install mariadb on db_servers for Ubuntu
+  tags: db,mariadb,ubuntu
+  apt:
+    name: mariadb-server
+    state: latest
+  when: ansible_distribution == "Ubuntu"
