@@ -1,0 +1,8 @@
+- name: Checks if unzip package is installed
+  package_facts:
+    manager: auto
+
+- name: print
+  debug:
+    msg: "Version of Unzip is {{ansible_facts.packages['unzip'][0]['version'] }}"
+  when: "'Unzip' in ansible_facts.packages"
