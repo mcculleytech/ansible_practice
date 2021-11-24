@@ -11,7 +11,7 @@
   register: validation_task
 
 
-- include: validate/{{ ansible_hostname }}.yml
+- include: tasks/validate/{{ ansible_hostname }}.yml
   tags: validation
   when: validation_task.stat.exists
 

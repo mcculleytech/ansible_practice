@@ -1,3 +1,3 @@
 # ansible_practice
 
-A repo designed to hold ansible playbooks, configs, etc.
+A repo designed to hold test ansible playbooks, configs, etc.

@@ -5,14 +5,12 @@
 
 - name: "unzip test result"
   tags: validation
-  become: true
   debug: 
     msg: "unzip found"
   when: "'unzip' in ansible_facts.packages"
 
 - name: "unzip test result"
   tags: validation
-  become: true
   debug: 
     msg: "unzip not found"
   when: "'unzip' not in ansible_facts.packages"

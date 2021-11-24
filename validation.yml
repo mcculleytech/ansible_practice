@@ -1,0 +1,18 @@
+---
+
+
+- hosts: all
+  become: true
+  user: neo
+  tasks: 
+
+  - name: check for validation task
+    tags: validation
+    stat:
+      path: roles/base/tasks/validate/{{ ansible_hostname }}.yml
+    delegate_to: localhost
+    register: validation_task
+
+  - include: roles/base/tasks/validate/{{ ansible_hostname }}.yml
+    tags: validation
+    when: validation_task.stat.exists
