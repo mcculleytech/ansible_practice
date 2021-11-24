@@ -1,8 +1,18 @@
-- name: Checks if unzip package is installed
+- name: "Check if unzip is installed"
+  tags: validation
   package_facts:
-    manager: auto
+    manager: "auto"
 
-- name: print
-  debug:
-    msg: "Version of Unzip is {{ansible_facts.packages['unzip'][0]['version'] }}"
-  when: "'Unzip' in ansible_facts.packages"
+- name: "unzip test result"
+  tags: validation
+  become: true
+  debug: 
+    msg: "unzip found"
+  when: "'unzip' in ansible_facts.packages"
+
+- name: "unzip test result"
+  tags: validation
+  become: true
+  debug: 
+    msg: "unzip not found"
+  when: "'unzip' not in ansible_facts.packages"

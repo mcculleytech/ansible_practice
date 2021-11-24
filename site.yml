@@ -5,14 +5,14 @@
   pre_tasks:
 
   - name: updates repo cache (Rocky)
-    tags: always
+    # tags: always
     dnf:
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "Rocky"
 
   - name: updates repo cache (Ubuntu)
-    tags: always
+    # tags: always
     apt: 
       update_cache: yes
     changed_when: false
